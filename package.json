@@ -1,0 +1,30 @@
+{
+  "name": "tilt-a-whirl",
+  "version": "1.0.0",
+  "description": "A piece intended for mobile devices created as part of a project at GSA",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run dev",
+    "dev": "parcel src/public/index.html",
+    "build": "parcel build src/public/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ivoilic/tilt-a-whirl.git"
+  },
+  "keywords": [],
+  "author": "Ivo Ilic",
+  "license": "Copyright 2019 Ivo Ilic",
+  "bugs": {
+    "url": "https://github.com/ivoilic/tilt-a-whirl/issues"
+  },
+  "homepage": "https://github.com/ivoilic/tilt-a-whirl#readme",
+  "devDependencies": {
+    "normalize.css": "^8.0.1",
+    "sass": "^1.22.12"
+  },
+  "dependencies": {
+    "matter-js": "^0.14.2"
+  }
+}
