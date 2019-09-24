@@ -1,53 +1,71 @@
-import Matter from 'matter-js';
+/* eslint-env browser */
 import { ready } from './utilities';
 
-const main = () => {
-  window.addEventListener('deviceorientation', handleOrientation, true);
+class App {
+  constructor() {
+    this.setup();
+    this.frame = 0;
+    this.blackThreshold = 30;
+    this.hidden = false;
+    this.sampleSize = 50;
+  }
 
-  // module aliases
-  let Engine = Matter.Engine,
-    Render = Matter.Render,
-    World = Matter.World,
-    Bodies = Matter.Bodies;
+  setup() {
+    this.video = document.querySelector('#videoElement');
 
-  // create an engine
-  let engine = Engine.create({});
-
-  // create a renderer
-  let render = Render.create({
-    element: document.body,
-    engine: engine,
-    options: {
-      wireframes: false
+    if (navigator.mediaDevices.getUserMedia) {
+      navigator.mediaDevices
+        .getUserMedia({ video: true })
+        .then(stream => {
+          this.video.srcObject = stream;
+          this.setupCanvas();
+        })
+        .catch(error => {
+          console.log(error);
+        });
     }
-  });
+  }
 
-  // create two boxes and a ground
-  let boxA = Bodies.rectangle(400, 200, 80, 80);
-  let boxB = Bodies.rectangle(450, 50, 80, 80);
+  setupCanvas() {
+    this.canvas = document.getElementById('sensorCanvas');
+    this.ctx = this.canvas.getContext('2d');
+    this.render();
+  }
 
-  let ceiling = Bodies.rectangle(400, 0, 810, 60, { isStatic: true });
-  let wallL = Bodies.rectangle(0, 400, 60, 810, { isStatic: true });
-  let wallR = Bodies.rectangle(810, 400, 60, 810, { isStatic: true });
-  let ground = Bodies.rectangle(400, 610, 810, 60, { isStatic: true });
+  render() {
+    clearTimeout(this.renderTimeout);
 
-  engine.world.gravity.y = -1;
+    this.frame += 1;
+    // console.log(this.frame);
+    this.ctx.drawImage(this.video, 0, 0, this.sampleSize, this.sampleSize);
 
-  // add all of the bodies to the world
-  World.add(engine.world, [boxA, boxB, ground, ceiling, wallL, wallR]);
+    this.hidden = true;
 
-  // run the engine
-  Engine.run(engine);
+    for (let x = 0; x < this.sampleSize; x += 1) {
+      if (!this.hidden) {
+        break;
+      }
+      for (let y = 0; y < this.sampleSize; y += 1) {
+        if (!this.hidden) {
+          break;
+        }
+        const samplePoint = this.ctx.getImageData(x, y, 1, 1).data;
+        if (
+          samplePoint[0] > this.blackThreshold &&
+          samplePoint[1] > this.blackThreshold &&
+          samplePoint[2] > this.blackThreshold
+        ) {
+          this.hidden = false;
+        }
+      }
+    }
 
-  // run the renderer
-  Render.run(render);
-};
+    this.renderTimeout = setTimeout(() => {
+      this.render();
+    }, 10);
+  }
+}
 
-const handleOrientation = event => {
-  var absolute = event.absolute;
-  var alpha = event.alpha;
-  var beta = event.beta;
-  var gamma = event.gamma;
-};
-
-ready(main);
+ready(() => {
+  const app = new App();
+});
