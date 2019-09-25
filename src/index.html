@@ -8,7 +8,7 @@
   <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Tilt-A-Whirl</title>
+    <title>Verschränkung</title>
     <meta name="description" content="" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="./styles/index.scss" />
@@ -21,7 +21,25 @@
         <a href="#">upgrade your browser</a> to improve your experience.
       </p>
     <![endif]-->
-    <video autoplay="true" id="videoElement"></video>
+    <video autoplay muted playsinline id="videoElement"></video>
+    <div class="content">
+      <div id="screen-0" class="screen screen-0 active">
+        <h1 class="title">Verschränkung</h1>
+        <h2 class="subtitle">(Entanglement)</h2>
+        <button id="start" class="button button-ready">Start</button>
+      </div>
+      <div id="screen-1" class="screen screen-1 waiting">
+        <ol class="instructions">
+          <li>Put your phone facedown. The program is now both alive and dead.</li>
+          <li>If you look at your phone the program is now either alive or dead.</li>
+          <li>Repeat.</li>
+        </ol>
+        <button id="ready" class="button button-ready">Ready?</button>
+      </div>
+      <div id="screen-2" class="screen screen-2 waiting">
+        <div id="result" class="result">Alive</div>
+      </div>
+    </div>
     <canvas id="sensorCanvas" width="50" height="50"/>
   </body>
 </html>
