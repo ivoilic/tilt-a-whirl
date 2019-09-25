@@ -1,5 +1,4 @@
 @import '../../node_modules/normalize.css/normalize.css';
-@import url('https://fonts.googleapis.com/css?family=Bitter:400,400i,700&display=swap');
 
 $color-white: #fff7e9;
 $color-black: #24221f;
@@ -13,7 +12,7 @@ body {
 body {
   background: $color-white;
   color: $color-black;
-  font-family: 'Bitter', serif;
+  font-family: 'Libre Baskerville', serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow: hidden;
