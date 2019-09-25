@@ -1,8 +1,8 @@
 @import '../../node_modules/normalize.css/normalize.css';
 @import url('https://fonts.googleapis.com/css?family=Bitter:400,400i,700&display=swap');
 
-$color-white: rgb(255, 247, 233);
-$color-black: rgb(36, 34, 31);
+$color-white: #fff7e9;
+$color-black: #24221f;
 
 html,
 body {
@@ -101,6 +101,10 @@ h6 {
   z-index: 11;
 }
 
+.screen-3 {
+  z-index: 10;
+}
+
 .title {
   margin: 0;
   padding-bottom: 12px;
@@ -141,6 +145,7 @@ h6 {
   padding: 0;
   list-style: none;
   text-align: center;
+  margin: 0;
   li {
     padding-left: 10px;
     margin: 32px 0;
@@ -152,12 +157,13 @@ h6 {
       content: '2.';
       display: block;
       font-weight: 700;
-      font-size: 24px;
+      font-size: 18px;
       width: 20px;
       margin: auto;
       padding-bottom: 8px;
     }
     &:first-child {
+      margin-top: 0;
       &:before {
         content: '1.';
       }
@@ -168,6 +174,20 @@ h6 {
       }
     }
   }
+}
+
+.quote {
+  line-height: 1.6em;
+  font-size: 15px;
+  text-align: center;
+  padding-bottom: 24px;
+  margin: 0;
+}
+
+.author {
+  font-size: 20px;
+  font-style: italic;
+  padding-bottom: 48px;
 }
 
 .result {

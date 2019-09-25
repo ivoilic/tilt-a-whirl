@@ -17,23 +17,18 @@ class App {
   queryDomElements() {
     this.video = document.querySelector('#videoElement');
     this.startButton = document.querySelector('#start');
+    this.nextButton = document.querySelector('#next');
     this.readyButton = document.querySelector('#ready');
     this.screens[0] = document.querySelector('#screen-0');
     this.screens[1] = document.querySelector('#screen-1');
     this.screens[2] = document.querySelector('#screen-2');
     this.result = document.querySelector('#result');
-
-    // this.video = document.createElement('video');
-    // this.video.autoplay = true;
-    // this.video.playsinline = 'true';
-    // this.video.muted = 'true';
-    // this.video.id = 'videoElement';
-    // document.body.appendChild(this.video);
   }
 
   addEventListeners() {
     this.startButton.addEventListener('click', this.openSection.bind(this, 1));
-    this.readyButton.addEventListener('click', this.openSection.bind(this, 2));
+    this.nextButton.addEventListener('click', this.openSection.bind(this, 2));
+    this.readyButton.addEventListener('click', this.openSection.bind(this, 3));
   }
 
   clearResult() {
